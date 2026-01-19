@@ -69,12 +69,12 @@ export default function PremiumPage() {
       <header className="sticky top-0 z-40 bg-[#0A0A0A]/95 backdrop-blur-sm border-b border-[#1F1F1F]">
         <div className="max-w-7xl mx-auto px-4 py-6">
           <div className="flex items-center gap-3">
-            <Crown className="w-8 h-8 text-[#D4AF37]" />
+            <Crown className="w-8 h-8 text-[#00FF00]" />
             <div>
               <h1 className="text-3xl font-bold text-white uppercase tracking-tight">
                 Premium
               </h1>
-              <div className="w-16 h-1 bg-gradient-to-r from-[#D4AF37] to-transparent mt-2" />
+              <div className="w-16 h-1 bg-gradient-to-r from-[#00FF00] via-[#0080FF] to-transparent mt-2" />
             </div>
           </div>
         </div>
@@ -85,12 +85,15 @@ export default function PremiumPage() {
         {/* Hero Section */}
         <section className="mb-16 text-center">
           <div className="mb-8">
-            <div className="inline-block w-20 h-20 bg-gradient-to-br from-[#E5C158] via-[#D4AF37] to-[#B8941F] mb-6" style={{
+            <div className="inline-block w-20 h-20 bg-gradient-to-br from-[#00FF00] via-[#0080FF] to-[#0040FF] mb-6 shadow-[0_0_30px_rgba(0,255,0,0.3)]" style={{
               clipPath: 'polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%)',
             }} />
           </div>
           <h2 className="text-5xl md:text-6xl font-bold text-white uppercase mb-4">
-            Desbloqueie Seu<br />Potencial Máximo
+            Desbloqueie Seu<br />
+            <span className="bg-gradient-to-r from-[#00FF00] to-[#0080FF] bg-clip-text text-transparent">
+              Potencial Máximo
+            </span>
           </h2>
           <p className="text-[#8A8A8A] text-lg max-w-2xl mx-auto">
             Junte-se à elite do fitness. Acesse recursos exclusivos, análises avançadas e suporte personalizado.
@@ -101,15 +104,15 @@ export default function PremiumPage() {
         <section className="mb-16">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { icon: Zap, title: 'AI Personalizado', desc: 'Treinos adaptados ao seu nível' },
-              { icon: Target, title: 'Metas Inteligentes', desc: 'Acompanhamento automático' },
-              { icon: TrendingUp, title: 'Análises Pro', desc: 'Insights detalhados' },
-              { icon: Award, title: 'Suporte Elite', desc: 'Atendimento prioritário' },
+              { icon: Zap, title: 'AI Personalizado', desc: 'Treinos adaptados ao seu nível', color: 'from-[#00FF00] to-[#00CC00]' },
+              { icon: Target, title: 'Metas Inteligentes', desc: 'Acompanhamento automático', color: 'from-[#0080FF] to-[#0060FF]' },
+              { icon: TrendingUp, title: 'Análises Pro', desc: 'Insights detalhados', color: 'from-[#00FF00] to-[#0080FF]' },
+              { icon: Award, title: 'Suporte Elite', desc: 'Atendimento prioritário', color: 'from-[#0040FF] to-[#0080FF]' },
             ].map((benefit, index) => {
               const Icon = benefit.icon;
               return (
-                <PremiumCard key={index} className="p-6 text-center">
-                  <div className="w-12 h-12 bg-gradient-to-br from-[#E5C158] via-[#D4AF37] to-[#B8941F] mx-auto mb-4 flex items-center justify-center rounded-xl">
+                <PremiumCard key={index} className="p-6 text-center hover:border-[#00FF00] transition-all duration-300">
+                  <div className={`w-12 h-12 bg-gradient-to-br ${benefit.color} mx-auto mb-4 flex items-center justify-center rounded-xl shadow-[0_0_20px_rgba(0,255,0,0.2)]`}>
                     <Icon className="w-6 h-6 text-[#0A0A0A]" />
                   </div>
                   <h3 className="text-white font-bold uppercase mb-2">{benefit.title}</h3>
@@ -129,13 +132,13 @@ export default function PremiumPage() {
             {plans.map((plan) => (
               <PremiumCard 
                 key={plan.name}
-                className={`p-8 relative ${
-                  plan.highlighted ? 'border-[#D4AF37] shadow-[0_0_40px_rgba(212,175,55,0.2)]' : ''
+                className={`p-8 relative transition-all duration-300 ${
+                  plan.highlighted ? 'border-[#00FF00] shadow-[0_0_40px_rgba(0,255,0,0.3)]' : 'hover:border-[#0080FF]'
                 }`}
               >
                 {plan.highlighted && (
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                    <div className="px-6 py-2 bg-gradient-to-r from-[#E5C158] via-[#D4AF37] to-[#B8941F] rounded-full">
+                    <div className="px-6 py-2 bg-gradient-to-r from-[#00FF00] via-[#0080FF] to-[#0040FF] rounded-full shadow-[0_0_20px_rgba(0,255,0,0.4)]">
                       <span className="text-[#0A0A0A] font-bold text-sm uppercase flex items-center gap-2">
                         <Sparkles className="w-4 h-4" />
                         Mais Popular
@@ -150,7 +153,7 @@ export default function PremiumPage() {
                   </h3>
                   <p className="text-[#8A8A8A] text-sm mb-4">{plan.description}</p>
                   <div className="mb-2">
-                    <span className="text-5xl font-bold text-[#D4AF37]">
+                    <span className={`text-5xl font-bold ${plan.highlighted ? 'bg-gradient-to-r from-[#00FF00] to-[#0080FF] bg-clip-text text-transparent' : 'text-[#D4AF37]'}`}>
                       {plan.price}
                     </span>
                   </div>
@@ -160,7 +163,7 @@ export default function PremiumPage() {
                 <div className="space-y-3 mb-8">
                   {plan.features.map((feature, index) => (
                     <div key={index} className="flex items-start gap-3">
-                      <Check className="w-5 h-5 text-[#D4AF37] flex-shrink-0 mt-0.5" />
+                      <Check className={`w-5 h-5 ${plan.highlighted ? 'text-[#00FF00]' : 'text-[#0080FF]'} flex-shrink-0 mt-0.5`} />
                       <span className="text-[#B0B0B0] text-sm">{feature}</span>
                     </div>
                   ))}
@@ -187,8 +190,8 @@ export default function PremiumPage() {
 
         {/* Guarantee */}
         <section>
-          <PremiumCard className="p-12 text-center">
-            <Shield className="w-16 h-16 text-[#D4AF37] mx-auto mb-6" />
+          <PremiumCard className="p-12 text-center border-[#0080FF] hover:border-[#00FF00] transition-all duration-300">
+            <Shield className="w-16 h-16 text-[#0080FF] mx-auto mb-6" />
             <h3 className="text-3xl font-bold text-white uppercase mb-4">
               Garantia de 7 Dias
             </h3>
